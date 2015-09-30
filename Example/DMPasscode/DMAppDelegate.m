@@ -35,7 +35,7 @@
     config.fieldColor = [UIColor colorWithRed:0.10 green:0.34 blue:0.61 alpha:1.00];
     config.emptyFieldColor = [UIColor colorWithRed:0.10 green:0.34 blue:0.61 alpha:1.00];
     config.statusBarStyle = UIStatusBarStyleLightContent;
-    config.resetAlertViewMessage = @"Mona";
+    config.resetAlertViewMessage = @"Do you want to erase data and reset the passcode?";
     [DMPasscode setConfig:config];
     
      
