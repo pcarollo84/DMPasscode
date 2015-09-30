@@ -28,6 +28,8 @@
         self.navigationBarTitle = @"";
         self.navigationBarFont = [UIFont systemFontOfSize:16];
         self.navigationBarTitleColor = [UIColor darkTextColor];
+        self.resetAlertViewTitle = @"Alert";
+        self.resetAlertViewMessage = @"Are you sure you want to reset the Passcode?";
     }
     return self;
 }

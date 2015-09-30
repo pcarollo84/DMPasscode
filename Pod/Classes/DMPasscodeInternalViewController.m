@@ -144,8 +144,8 @@
 - (void)close:(id)sender {
     [_input resignFirstResponder];
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Attention!"
-                                                        message:@"Are you you want to Reset?"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:_config.resetAlertViewTitle
+                                                        message:_config.resetAlertViewMessage
                                                        delegate:self
                                               cancelButtonTitle:@"NO"
                                               otherButtonTitles:@"YES", nil];
@@ -182,8 +182,7 @@
     
     switch (buttonIndex) {
         case RESET_NO_BUTTON_ALERTVIEW:
-        {
-            
+        {            
             [_input becomeFirstResponder];
         }
             break;

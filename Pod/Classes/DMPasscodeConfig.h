@@ -91,4 +91,14 @@
  */
 @property (nonatomic, strong) UIColor * navigationBarTitleColor;
 
+/**
+ *  The title used in the AlertView shown after ResetButton pressed
+ */
+@property (nonatomic, strong) NSString *resetAlertViewTitle;
+
+/**
+ *  The message used in the AlertView shown after ResetButton pressed
+ */
+@property (nonatomic, strong) NSString *resetAlertViewMessage;
+
 @end

@@ -26,7 +26,7 @@
     [self addViews];
     [self updateViews];
     
-    /*
+    
     // Example for a different config.
      
     DMPasscodeConfig* config = [[DMPasscodeConfig alloc] init];
@@ -35,8 +35,9 @@
     config.fieldColor = [UIColor colorWithRed:0.10 green:0.34 blue:0.61 alpha:1.00];
     config.emptyFieldColor = [UIColor colorWithRed:0.10 green:0.34 blue:0.61 alpha:1.00];
     config.statusBarStyle = UIStatusBarStyleLightContent;
+    config.resetAlertViewMessage = @"Mona";
     [DMPasscode setConfig:config];
-    */
+    
      
     return YES;
 }
