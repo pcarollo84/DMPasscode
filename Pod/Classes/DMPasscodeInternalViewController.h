@@ -13,12 +13,15 @@
 
 - (void)enteredCode:(NSString *)code;
 - (void)canceled;
+- (void)resetted;
 
 @end
 
 @class DMPasscodeConfig;
 
 @interface DMPasscodeInternalViewController : UIViewController
+
+@property (nonatomic) BOOL hideResetButton;
 
 - (id)initWithDelegate:(id<DMPasscodeInternalViewControllerDelegate>)delegate config:(DMPasscodeConfig *)config;
 - (void)reset;

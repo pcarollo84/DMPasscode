@@ -144,6 +144,7 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
     [viewController presentViewController:nc animated:YES completion:nil];
     if (_mode == 0) {
         [_passcodeViewController setInstructions:NSLocalizedString(@"dmpasscode_enter_new_code", nil)];
+        _passcodeViewController.hideResetButton = YES;
     } else if (_mode == 1) {
         [_passcodeViewController setInstructions:NSLocalizedString(@"dmpasscode_enter_to_unlock", nil)];
     }
@@ -195,6 +196,8 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
 }
 
 - (void)canceled {
+    
+    [DMPasscode removePasscode];
     _completion(NO, nil);
 }
 

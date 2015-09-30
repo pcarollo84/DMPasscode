@@ -6,11 +6,14 @@
 //
 //
 
+#define RESET_NO_BUTTON_ALERTVIEW 0
+#define RESET_YES_BUTTON_ALERTVIEW 1
+
 #import "DMPasscodeInternalViewController.h"
 #import "DMPasscodeInternalField.h"
 #import "DMPasscodeConfig.h"
 
-@interface DMPasscodeInternalViewController () <UITextFieldDelegate>
+@interface DMPasscodeInternalViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 @end
 
 @implementation DMPasscodeInternalViewController {
@@ -29,17 +32,20 @@
         _instructions = [[UILabel alloc] init];
         _error = [[UILabel alloc] init];
         _textFields = [[NSMutableArray alloc] init];
+        
+        _hideResetButton = NO;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = _config.backgroundColor;
     self.navigationController.navigationBar.barTintColor = _config.navigationBarBackgroundColor;
-    UIBarButtonItem* closeItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(close:)];
+    UIBarButtonItem* closeItem = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(close:)];
     closeItem.tintColor = _config.navigationBarForegroundColor;
-    self.navigationItem.leftBarButtonItem = closeItem;
+    self.navigationItem.rightBarButtonItem = closeItem;
     self.navigationController.navigationBar.barStyle = (UIBarStyle)_config.statusBarStyle;
     self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName :_config.navigationBarFont,
                                                                     NSForegroundColorAttributeName: _config.navigationBarTitleColor};
@@ -91,6 +97,15 @@
     [_input becomeFirstResponder];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    if (self.hideResetButton) {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    
+}
+
 -(void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
     if([_input isFirstResponder]){
         [_input resignFirstResponder];
@@ -128,8 +143,16 @@
 
 - (void)close:(id)sender {
     [_input resignFirstResponder];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [_delegate canceled];
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Attention!"
+                                                        message:@"Are you you want to Reset?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"NO"
+                                              otherButtonTitles:@"YES", nil];
+    [alertView show];
+
+    
+    
 }
 
 - (void)reset {
@@ -153,5 +176,26 @@
     _instructions.text = instructions;
 }
 
+#pragma mark - AlertView Delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case RESET_NO_BUTTON_ALERTVIEW:
+        {
+            
+            [_input becomeFirstResponder];
+        }
+            break;
+        case RESET_YES_BUTTON_ALERTVIEW:
+        {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [_delegate canceled];
+        }
+            break;
+        default:
+            break;
+    }
+}
 
 @end

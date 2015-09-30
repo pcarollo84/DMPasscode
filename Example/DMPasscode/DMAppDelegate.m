@@ -105,9 +105,10 @@
             if (success) {
                 NSLog(@"Win");
             }else{
-
                 NSLog(@"Loss");
             }
+            
+            [self updateViews];
         }];
     }
 }
