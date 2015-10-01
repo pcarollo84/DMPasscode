@@ -30,6 +30,7 @@
         self.navigationBarTitleColor = [UIColor darkTextColor];
         self.resetAlertViewTitle = @"Alert";
         self.resetAlertViewMessage = @"Are you sure you want to reset the Passcode?";
+        self.maxAttempts = 3;
     }
     return self;
 }

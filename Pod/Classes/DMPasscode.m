@@ -180,13 +180,11 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
         if ([code isEqualToString:[[DMKeychain defaultKeychain] objectForKey:KEYCHAIN_NAME]]) {
             [self closeAndNotify:YES withError:nil];
         } else {
-            if (_count == 1) {
-                [_passcodeViewController setErrorMessage:NSLocalizedString(@"dmpasscode_1_left", nil)];
-            } else {
-                [_passcodeViewController setErrorMessage:[NSString stringWithFormat:NSLocalizedString(@"dmpasscode_n_left", nil), 2 - _count]];
-            }
+            
+            [_passcodeViewController setErrorMessage:[NSString stringWithFormat:NSLocalizedString(@"dmpasscode_n_left", nil), _config.maxAttempts - 1 - _count]];
+            
             [_passcodeViewController reset];
-            if (_count >= 2) { // max 3 attempts
+            if (_count >= _config.maxAttempts - 1) { // max n attempts
                 NSError *errorMatchingPins = [NSError errorWithDomain:DMUnlockErrorDomain code:DMErrorUnlocking userInfo:nil];
                 [self closeAndNotify:NO withError:errorMatchingPins];
             }

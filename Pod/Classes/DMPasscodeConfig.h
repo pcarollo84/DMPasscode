@@ -101,4 +101,9 @@
  */
 @property (nonatomic, strong) NSString *resetAlertViewMessage;
 
+/**
+ *  Max number of attempts that a user can do
+ */
+@property (nonatomic) NSUInteger maxAttempts;
+
 @end
