@@ -13,7 +13,6 @@
 
 - (void)enteredCode:(NSString *)code;
 - (void)canceled;
-- (void)resetted;
 
 @end
 
