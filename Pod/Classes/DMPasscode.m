@@ -185,8 +185,13 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
             
             [_passcodeViewController reset];
             if (_count >= _config.maxAttempts - 1) { // max n attempts
-                NSError *errorMatchingPins = [NSError errorWithDomain:DMUnlockErrorDomain code:DMErrorUnlocking userInfo:nil];
-                [self closeAndNotify:NO withError:errorMatchingPins];
+//                NSError *errorMatchingPins = [NSError errorWithDomain:DMUnlockErrorDomain code:DMErrorUnlocking userInfo:nil];
+//                [self closeAndNotify:NO withError:errorMatchingPins];
+                //Reset the count so the user can try again
+                _count = 0;
+                [_passcodeViewController setErrorMessage:@""];
+                [_passcodeViewController showResetMessage];
+                return;
             }
         }
     }

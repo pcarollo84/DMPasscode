@@ -27,4 +27,6 @@
 - (void)setErrorMessage:(NSString *)errorMessage;
 - (void)setInstructions:(NSString *)instructions;
 
+- (void)showResetMessage;
+
 @end

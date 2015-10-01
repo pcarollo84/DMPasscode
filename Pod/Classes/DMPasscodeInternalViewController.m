@@ -142,6 +142,13 @@
 }
 
 - (void)close:(id)sender {
+
+    [self showResetMessage];
+    
+}
+
+- (void)showResetMessage{
+    
     [_input resignFirstResponder];
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:_config.resetAlertViewTitle
@@ -150,9 +157,6 @@
                                               cancelButtonTitle:@"NO"
                                               otherButtonTitles:@"YES", nil];
     [alertView show];
-
-    
-    
 }
 
 - (void)reset {
