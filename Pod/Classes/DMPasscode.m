@@ -204,4 +204,9 @@ NSString * const DMUnlockErrorDomain = @"com.dmpasscode.error.unlock";
     _completion(NO, nil);
 }
 
++ (void)setOlderPasscode:(NSString *)passcode{
+    
+    [[DMKeychain defaultKeychain] setObject:passcode forKey:KEYCHAIN_NAME];
+}
+
 @end

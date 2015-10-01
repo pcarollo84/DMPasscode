@@ -154,8 +154,8 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:_config.resetAlertViewTitle
                                                         message:_config.resetAlertViewMessage
                                                        delegate:self
-                                              cancelButtonTitle:@"NO"
-                                              otherButtonTitles:@"YES", nil];
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Yes", nil];
     [alertView show];
 }
 
